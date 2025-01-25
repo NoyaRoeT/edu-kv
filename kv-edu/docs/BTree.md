@@ -25,7 +25,17 @@ Page header
 Page offset uses 4 bytes (uint32_t) => max number of pages bounded by this.
 
 ## BNode
-Represents a node of a B+ tree.
+Encapsulates a node in a B+ tree.
+
+TODO: BNode encapsulates a page in the DB. It will be responsible for interacting with the page manager, i.e. it is responsible for reads and writes to its associated page.
+
+## BTree
+Represents a B+ tree.
+
+TODO: BTree will interact with BNodes only and not directly with the page manager.
+
+## Design plan
+BTree <-> BNode <-> PageManager <-> Disk
 
 ## Current Issues
 1. Ownership of data pointer that points to the start of a DB page in memory.
