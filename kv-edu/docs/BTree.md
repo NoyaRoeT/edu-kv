@@ -15,11 +15,11 @@ for the given range.
 
 Page header
 {
-	type: Type of the node (internal or leaf)
-	numCells: number of key-value pairs stored in this page
-	cellOffsets: offsets to start of each key-value pair in this page
+	type (1 byte): Type of the node (internal or leaf)
+	numCells (2 bytes): number of key-value pairs stored in this page
 	freeSpacePtr: offset to start of unused space
 	rightMostPtr: only for internal nodes
+	cellOffsets: offsets to start of each key-value pair in this page
 }
 
 Page offset uses 4 bytes (uint32_t) => max number of pages bounded by this.
