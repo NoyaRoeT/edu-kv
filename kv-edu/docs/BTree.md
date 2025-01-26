@@ -35,7 +35,9 @@ Represents a B+ tree.
 TODO: BTree will interact with BNodes only and not directly with the page manager.
 
 ## Design plan
-BTree <-> BNode <-> PageManager <-> Disk
+BTree will request a page from PageManager, PageManager will return a BNode that is used to send R/W requests to PageManager.
+PageManager will be a singleton that is globally accessible.
+
 
 ## Current Issues
 1. Ownership of data pointer that points to the start of a DB page in memory.
