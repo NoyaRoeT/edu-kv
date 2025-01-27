@@ -39,7 +39,13 @@ FrameManager:
 - Manages the lifetime and ownership of frames.
 
 ## TODO
-1. Finish up with FrameManager and Frames
-	- Need to fill frames with data
-2. Implement BNode and B+Tree
-3. Concurrency Control
+1. Implement in-memory B+ tree that modifies memory via frames
+	- Setter and getter methods for BNode header
+	- Getter for BNode cell
+	- Inserting into BNode
+2. FrameManager
+	- Ability to create new frames
+	- Load frame with data after retreiving
+
+
+Finish in-memory B+tree first, so we have data that we can test.

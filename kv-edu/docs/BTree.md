@@ -13,16 +13,14 @@ Fixed page size = 4096, might change this later on (e.g. make it configurable)
 For internal nodes, key-value pairs store keys and the page numbers of the child nodes responsible
 for the given range.
 
-Page header
-{
-	type (1 byte): Type of the node (internal or leaf)
-	numCells (2 bytes): number of key-value pairs stored in this page
-	freeSpacePtr: offset to start of unused space
-	rightMostPtr: only for internal nodes
-	cellOffsets: offsets to start of each key-value pair in this page
-}
+Format:
++---------------------+----------------------+-----------------------+---------------------+------------------------------+------------+
+| BNODE_TYPE (1 byte) | NUM_CELLS (2 bytes) | FREE_SPACE_PTR (2B)  | RIGHT_MOST_CHILD (4B) | CELL_OFFSETS (2B * NUM_CELLS)| FREE_SPACE |
++---------------------+----------------------+-----------------------+---------------------+------------------------------+------------+
 
 Page offset uses 4 bytes (uint32_t) => max number of pages bounded by this.
+
+NOTE: raw pointers may suffer from byte alignment issues (some architectures do not allow accessing unaligned memory). So use memcpy instead.
 
 ## BNode
 Encapsulates a node in a B+ tree.
