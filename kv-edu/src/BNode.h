@@ -9,9 +9,8 @@ enum class BNodeType : uint8_t
 	Leaf = 0x0D
 };
 
-class BNode
+struct BNode
 {
-public:
 	// Getters
 	BNodeType GetType();
 	uint16_t GetNumCells();
@@ -31,8 +30,8 @@ public:
 	void SetCellOffset(size_t idx, uint16_t value);
 
 	// Lookup
+
 	
-private:
 	void* dataPtr;
 
 	// Constants

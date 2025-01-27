@@ -6,6 +6,9 @@ Do not allow size of a key-value record to exceed the content size of a page.
 
 Format: keyLen, valueLen, key, value
 
+Key and value are strings/byte[]
+Max key and value size = 256 for now.
+
 
 ## Page format
 Fixed page size = 4096, might change this later on (e.g. make it configurable)
@@ -31,10 +34,6 @@ TODO: BNode encapsulates a page in the DB. It will be responsible for interactin
 Represents a B+ tree.
 
 TODO: BTree will interact with BNodes only and not directly with the page manager.
-
-## Design plan
-BTree will request a page from PageManager, PageManager will return a BNode that is used to send R/W requests to PageManager.
-PageManager will be a singleton that is globally accessible.
 
 
 ## Current Issues
