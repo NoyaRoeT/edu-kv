@@ -26,34 +26,8 @@ public:
 	void SetRightMostChild(uint32_t offset);
 	void SetCellOffset(size_t idx, uint16_t value);
 
-	void* dataPtr; // Move to private after testing
-	static const uint32_t PAGE_SIZE = 4096;
-
 private:
-
-	// Utilities
-	template<typename T>
-	T ReadTypeAt(uint32_t offset) const
-	{
-		if (offset >= PAGE_SIZE)
-		{
-			throw std::runtime_error("Cannot read beyond page limits, tried to read offset=" + offset);
-		}
-
-		T value;
-		std::memcpy(&value, reinterpret_cast<uint8_t*>(dataPtr) + offset, sizeof(T));
-		return value;
-	}
-
-	template<typename T>
-	void WriteTypeAt(uint32_t offset, const T& value)
-	{
-		if (offset >= PAGE_SIZE)
-		{
-			throw std::runtime_error("Cannot write beyond page limits, tried to write offset=" + offset);
-		}
-		std::memcpy(reinterpret_cast<uint8_t*>(dataPtr) + offset, &value, sizeof(T));
-	}
+	void* dataPtr;
 
 	// Constants
 	static const uint32_t BNODE_TYPE_SIZE = sizeof(BNodeType);
@@ -69,3 +43,4 @@ private:
 	static const uint32_t CELL_PTR_SIZE = sizeof(uint16_t);
 	static const uint32_t CELL_PTRS_OFFSET = HEADER_SIZE;
 }; 
+	static const uint32_t PAGE_SIZE = 4096;
